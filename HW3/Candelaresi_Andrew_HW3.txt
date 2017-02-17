@@ -1,0 +1,94 @@
+Andrew Candelaresi
+Algorithms homework 3
+On my honor, as a University of Colorado at Boulder student, I have neither given nore reveived unauthorized assistance on this work.
+
+1.  a. T(n) = 4T(n/2)+n^2
+		a=4 b=2 k=1 p=0 log_2(4)=2
+		4<2 a>b^k
+			T(n)=Theta(n^2)
+
+b. since the recurrence relation comes out to:
+	T(n) = 2^kT(n-k)+c and you get down to level k (n-k)=1
+	all we are left with is 2^k +c and since c would be dominated 
+	by the 2^k at this level k = (n-1)we have 2^(n-1) and 
+	we can get 2^-1*2^n which is (1/2)2^n and the constant 
+	drops off 
+	the run time is 2^n 
+	T(n)=O(2^n)
+
+	c. T(n) = 9T(n/3)+n^2
+		a =9 b =3 k=2 p=0 log_3(9)=2
+			9=3^2 a=b^k and p > -1 
+				T(n) = Theta[(n^2)log(n)]
+
+	I would choose Algorithm a
+
+2.	best case run time for a comparison sorting algorithm would be that 
+	the list is already sorted and in one go of comparisons the list is returned
+
+InsertionSort(A){					cost  times
+for j in range(2, A.length)			c1		n
+	key = A[j]					c2      n-1
+	i =j-1					c4		n-1
+	while i > 0 and A[i] > key		c5		∑ from (2, n) t_j
+		A[i+1] = A[i]			c6		∑ from (2, n) (t_j-1)
+		i = i-1				c7     	∑ from (2, n) (t_j-1)
+	A[i+1] = key				c8		n-1
+	}
+	
+	T(n) = c1*n + c2(n-1) + c4(n-1) +c5∑ from (j=2, n) t_j +
+	c6∑ from (j=2, n) (t_j-1) +c7∑ from (j=2, n) (t_j-1) + c8(n-1)
+
+ 	T(n) = c1*n +c2(n-1) +c4(n-1) +c5(n-1) +c8(n-1)
+		 = (c1+c2+c4+c5+c8)n-(c2+c4+c5+c8)
+	we can express this running time as a funtion an+b for some
+	constants a	and b that depend on the costs 
+	c_i; it is therefore a linear funcion of n
+				
+
+
+
+
+
+
+
+
+3. 
+   n  n  n  n  n  n n n    n  n  n  n  n  n  n   n
+   |  |  |  |  |  |	| |     \ /   \ /   \ /   \ /
+    \/   |  |  |  | | |     2n    2n    2n    2n 
+     2n  |  |  |  |	| |      \    / 	 \    /
+      \ /   |  |  | | |        4n          4n
+       3n   |  |  | | |          \         /
+        \   |  |  | | |           \       /
+         \  /  |  | | |               8n
+          4n   |  | | |  every level here takes 8  so 
+			\ /   | | |  summing them all up you get 24 
+            5n   /  | |
+              \ /   | |
+               6n   | |
+                \  /  |
+                 7n   /
+                  \  /
+                   8n
+		this requires a summation of all
+		merges 8+7+6+5+4+3+2+1=36
+
+4.
+	TSLA
+	date range:  2010/06/29 - 2015/09/22
+	buy on:  2010/07/08
+	sell on:  2014/09/03	
+	Maximum Profit:  271.53
+
+	PG
+	date range:  2013/09/23 - 2015/09/22
+	buy on:  2013/10/01	
+	sell on:  2013/10/30
+	Maximum Profit:  7.01
+
+	KO
+	date range:  2014/09/22 - 2015/09/22
+	buy on:  2015/03/16
+	sell on:  2015/08/06
+	Maximum Profit:  2.0
